@@ -17,140 +17,34 @@
         
         :root {
             --gold: #d4af37;
-            --sun-gold: #ffb347;
+            --dark-gold: #b8941f;
             --dark-blue: #1a2b3c;
-            --field-green: #2d5016;
-            --sunflower-yellow: #ffde59;
-            --cream: #fef9e7;
+            --light-gold: #f4e8c1;
+            --cream: #faf6ed;
+            --sunflower: #ffde59;
         }
         
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(160deg, #ffefba 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #fef9e7 0%, #fffbf0 100%);
             min-height: 100vh;
             position: relative;
-            overflow-x: hidden;
         }
         
-        /* Анимированное поле подсолнухов */
-        .sunfield-background {
+        /* Тонкая текстура подсолнухов */
+        body::before {
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 30%, #90EE90 100%);
-            overflow: hidden;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="8" fill="%23d4af37" opacity="0.03"/></svg>');
+            z-index: -1;
         }
         
-        /* Анимированное солнце */
-        .sun {
-            position: absolute;
-            top: 10%;
-            right: 15%;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, #ffde59 0%, #ffb347 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 80px #ffb347, 0 0 120px #ffde59;
-            animation: sunrise 20s infinite alternate ease-in-out;
-        }
-        
-        @keyframes sunrise {
-            0% { transform: translateY(20px) scale(0.95); opacity: 0.8; }
-            100% { transform: translateY(-10px) scale(1.05); opacity: 1; }
-        }
-        
-        /* Анимированные подсолнухи */
-        .sunflower {
-            position: absolute;
-            bottom: 0;
-            width: 80px;
-            height: 200px;
-            animation: sway 8s infinite alternate ease-in-out;
-        }
-        
-        .sunflower::before {
-            content: "🌻";
-            font-size: 50px;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: follow-sun 15s infinite linear;
-        }
-        
-        .sunflower::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 150px;
-            background: linear-gradient(to top, #2d5016, #5a7c3a);
-            border-radius: 2px;
-        }
-        
-        /* Размещаем подсолнухи в разных позициях */
-        .sunflower:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .sunflower:nth-child(2) { left: 25%; animation-delay: 1s; }
-        .sunflower:nth-child(3) { left: 40%; animation-delay: 2s; }
-        .sunflower:nth-child(4) { left: 60%; animation-delay: 3s; }
-        .sunflower:nth-child(5) { left: 75%; animation-delay: 4s; }
-        .sunflower:nth-child(6) { left: 90%; animation-delay: 5s; }
-        
-        @keyframes sway {
-            0% { transform: rotate(-2deg); }
-            100% { transform: rotate(2deg); }
-        }
-        
-        @keyframes follow-sun {
-            0% { transform: translateX(-50%) rotate(0deg); }
-            100% { transform: translateX(-50%) rotate(360deg); }
-        }
-        
-        /* Легкие облака */
-        .cloud {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50px;
-            animation: clouds 30s infinite linear;
-        }
-        
-        .cloud::before, .cloud::after {
-            content: "";
-            position: absolute;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-        }
-        
-        .cloud:nth-child(1) {
-            top: 15%;
-            left: -100px;
-            width: 120px;
-            height: 40px;
-            animation-duration: 40s;
-        }
-        
-        .cloud:nth-child(2) {
-            top: 25%;
-            left: -150px;
-            width: 180px;
-            height: 50px;
-            animation-duration: 50s;
-            animation-delay: 10s;
-        }
-        
-        @keyframes clouds {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(100vw + 200px)); }
-        }
-
-        /* Остальные стили остаются премиальными */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -158,48 +52,250 @@
         }
         
         header {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 30px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid var(--gold);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo::before {
+            content: "🌻";
+            font-size: 2rem;
+        }
+        
+        .logo span {
+            color: var(--dark-blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         .hero {
-            background: linear-gradient(rgba(26, 43, 60, 0.85), rgba(212, 175, 55, 0.3)), 
+            background: linear-gradient(135deg, rgba(26, 43, 60, 0.9) 0%, rgba(212, 175, 55, 0.8) 100%), 
                         url('https://images.unsplash.com/photo-1598791318878-10e76d178023?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: white;
             text-align: center;
-            padding: 200px 20px 120px;
+            padding: 180px 20px 120px;
             margin-top: 80px;
             position: relative;
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         }
-
-        /* ... остальные стили остаются как в предыдущей версии ... */
-
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.3) 0%, transparent 50%);
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: white;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.4);
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        section {
+            background: white;
+            margin: 80px 0;
+            padding: 100px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-blue), var(--gold));
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "🌻";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, #faf6ed 0%, #fffbf0 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .product-card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--gold);
+        }
+        
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
-    <div class="sunfield-background">
-        <div class="sun"></div>
-        <div class="sunflower"></div>
-        <div class="sunflower"></div>
-        <div class="sunflower"></div>
-        <div class="sunflower"></div>
-        <div class="sunflower"></div>
-        <div class="sunflower"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-    </div>
-
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">GOLDEN OIL <span>TRADE</span></a>
@@ -216,46 +312,51 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Природа в каждой капле</h1>
-            <p>Экспорт премиального подсолнечного масла из солнечных полей прямо к вашему столу</p>
-            <a href="#contacts" class="btn">Запросить образцы</a>
+            <h1>Золото природы в каждой капле</h1>
+            <p>Экспорт премиального подсолнечного масла от ведущего производителя с 10-летним опытом</p>
+            <a href="#contacts" class="btn">Получить коммерческое предложение</a>
         </div>
     </section>
 
-    <!-- Остальное содержимое без изменений -->
-    <section id="about" class="fade-in">
+    <section id="about">
         <div class="container">
-            <h2 class="section-title">От поля до бутылки</h2>
+            <h2 class="section-title">О компании</h2>
             <div class="about-content">
                 <div>
-                    <p>Наши поля простираются под теплыми лучами солнца, где каждый подсолнух выращивается с заботой о качестве.</p>
-                    <p>Технологии холодного отжима сохраняют природную пользу и аромат свежесобранных семян.</p>
+                    <p><strong>Golden Oil Trade LLC</strong> - это более 10 лет успешной работы на международном рынке экспорта подсолнечного масла. Мы входим в группу компаний "GOLDEN OIL TRADE" и специализируемся на производстве и продаже масла высшего качества.</p>
+                    <p>Наша продукция сертифицирована по международным стандартам и поставляется в страны Европы, Азии и Ближнего Востока.</p>
                 </div>
                 <div>
-                    <p>От сбора урожая до упаковки - полный контроль качества на каждом этапе.</p>
-                    <p>Экологичное производство и устойчивое земледелие - наши основные принципы.</p>
+                    <p>Мы предлагаем полный цикл обслуживания: от консультации по выбору продукции до организации логистики и таможенного оформления.</p>
+                    <p>Гибкие условия поставок и индивидуальный подход к каждому клиенту - наши ключевые преимущества.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ... остальные секции ... -->
+    <!-- Остальные секции остаются без изменений -->
 
     <script>
-        // Улучшенная анимация для более плавного эффекта
-        document.addEventListener('DOMContentLoaded', function() {
-            // Анимация подсолнухов
-            const sunflowers = document.querySelectorAll('.sunflower');
-            sunflowers.forEach((flower, index) => {
-                flower.style.animationDelay = `${index * 0.5}s`;
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-            
-            // Параллакс эффект для фона
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const background = document.querySelector('.sunfield-background');
-                background.style.transform = `translateY(${scrolled * 0.4}px)`;
-            });
+        });
+
+        // Эффект для хедера при скролле
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.99)';
+                header.style.boxShadow = '0 5px 40px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.97)';
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.1)';
+            }
         });
     </script>
 </body>
