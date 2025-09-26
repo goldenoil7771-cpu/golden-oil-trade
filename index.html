@@ -4,23 +4,368 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golden Oil Trade - Экспорт подсолнечного масла</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; }
-        h1 { color: #d4af37; text-align: center; }
-        .contact { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        
+        .logo span {
+            color: #2c3e50;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px 100px;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #d4af37;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #b8941f;
+        }
+        
+        section {
+            background: white;
+            margin: 40px 0;
+            padding: 60px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-icon {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+        
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .advantage {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .advantage i {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+        
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .contact-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-links a {
+            color: #d4af37;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-links a:hover {
+            color: #b8941f;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Golden Oil Trade LLC</h1>
-        <p>Экспорт качественного подсолнечного масла по всему миру</p>
-        
-        <div class="contact">
-            <h3>Контакты:</h3>
-            <p>Николай: +380951299585 (Viber)</p>
-            <p>Анжела: +380671101368 (Viber, Telegram, WhatsApp)</p>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">GOLDEN OIL <span>TRADE</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#products">Продукция</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Golden Oil Trade - Экспорт качественного подсолнечного масла</h1>
+            <p>Более 10 лет на рынке. Поставки по всему миру. Сертифицированная продукция</p>
+            <a href="#contacts" class="btn">Связаться с нами</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">О компании</h2>
+            <div class="about-content">
+                <div>
+                    <p>Компания <strong>Golden Oil Trade LLC</strong> входит в группу компаний под общим названием "GOLDEN OIL TRADE". Наша компания более десяти лет занимается производством и продажей подсолнечного масла высшего качества.</p>
+                    <p>Наша продукция пользуется большим спросом по всему миру благодаря бескомпромиссному качеству и гибким условиям поставок.</p>
+                </div>
+                <div>
+                    <p>Все продукты сертифицированы по международным требованиям и обладают всеми необходимыми сертификатами качества.</p>
+                    <p>Мы гарантируем оперативную обработку заявок и индивидуальный подход к каждому клиенту.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Наша продукция</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🌻</div>
+                    <h3>Масло сырое первого класса</h3>
+                    <p>Высококачественное нерафинированное масло холодного отжима</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">⚡</div>
+                    <h3>Масло рафинированное, дезодорированное, вымороженное</h3>
+                    <p>Марки "П". Идеально для жарки и пищевой промышленности</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <h3>Фасовка:</h3>
+                <p>Наливом в контейнера с флекситанком, а также разлитое в емкости объемом 1, 5, 10, 20 литров</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="advantages">
+        <div class="container">
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="advantages">
+                <div class="advantage">
+                    <i class="fas fa-award"></i>
+                    <h3>10+ лет опыта</h3>
+                    <p>Более десяти лет успешной работы на международном рынке</p>
+                </div>
+                <div class="advantage">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Сертификаты качества</h3>
+                    <p>Вся продукция соответствует международным стандартам</p>
+                </div>
+                <div class="advantage">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Гибкая логистика</h3>
+                    <p>Работаем как на условиях самовывоза, так и с доставкой</p>
+                </div>
+                <div class="advantage">
+                    <i class="fas fa-clock"></i>
+                    <h3>Оперативность</h3>
+                    <p>Быстрый расчет стоимости товара и логистики</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <h3>Николай</h3>
+                    <p>Менеджер по экспорту</p>
+                    <p>+380951299585 (Viber)</p>
+                    <p>+447851407365 (Telegram, WhatsApp)</p>
+                    <p>golden.oil.7771@gmail.com</p>
+                    <div class="contact-links">
+                        <a href="viber://contact?number=%2B380951299585"><i class="fab fa-viber"></i></a>
+                        <a href="https://t.me/+447851407365"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/447851407365"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <h3>Анжела</h3>
+                    <p>Менеджер по работе с клиентами</p>
+                    <p>+380671101368 (Viber, Telegram, WhatsApp)</p>
+                    <p>golden.oil.1902@gmail.com</p>
+                    <div class="contact-links">
+                        <a href="viber://contact?number=%2B380671101368"><i class="fab fa-viber"></i></a>
+                        <a href="https://t.me/+380671101368"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/380671101368"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <h3>Адрес предприятия:</h3>
+                <p>Болгария, Святой Влас, комплекс Marina View Fort Beach, блок A-1, этаж 4, кв. 22</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Golden Oil Trade LLC. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
