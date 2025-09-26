@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Oil Trade - Экспорт подсолнечного масла</title>
+    <title>Golden Oil Trade - Export of Premium Sunflower Oil</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -17,6 +17,7 @@
         
         :root {
             --gold: #d4af37;
+            --dark-gold: #b8941f;
             --dark-blue: #1a2b3c;
             --light-gold: #f4e8c1;
             --cream: #faf6ed;
@@ -28,20 +29,6 @@
             color: #333;
             background: linear-gradient(135deg, #faf6ed 0%, #f4e8c1 100%);
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        /* Текстура семян подсолнуха */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23d4af37" opacity="0.1"/></svg>');
-            z-index: -1;
         }
         
         .container {
@@ -52,13 +39,11 @@
         
         header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
         }
         
         .nav-container {
@@ -69,15 +54,19 @@
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: bold;
             color: var(--gold);
-            text-decoration: none;
         }
         
         .logo span {
             color: var(--dark-blue);
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
         
         .nav-links {
@@ -91,144 +80,123 @@
             color: var(--dark-blue);
             font-weight: 500;
             transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        /* Стили для переключателя языка */
+        .language-switcher {
             position: relative;
         }
         
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+        .language-btn {
             background: var(--gold);
-            transition: width 0.3s ease;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: background 0.3s;
         }
         
-        .nav-links a:hover::after {
-            width: 100%;
+        .language-btn:hover {
+            background: var(--dark-gold);
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            display: none;
+            min-width: 120px;
+            z-index: 1001;
+        }
+        
+        .language-dropdown.show {
+            display: block;
+        }
+        
+        .language-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language-option:hover {
+            background: var(--light-gold);
+        }
+        
+        .language-option.active {
+            background: var(--gold);
+            color: white;
         }
         
         .hero {
-            background: linear-gradient(rgba(26, 43, 60, 0.9), rgba(26, 43, 60, 0.8)), 
-                        url('https://images.unsplash.com/photo-1598791318878-10e76d178023?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             color: white;
             text-align: center;
-            padding: 180px 20px 120px;
+            padding: 150px 20px 100px;
             margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -25%;
-            width: 150%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            animation: shine 3s infinite;
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
         
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s ease 0.5s forwards;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
         
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s ease 0.7s forwards;
-        }
-        
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
         }
         
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--gold), #b8941f);
+            background: var(--gold);
             color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
+            padding: 12px 30px;
+            border-radius: 5px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s ease 0.9s forwards;
+            font-weight: bold;
+            transition: background 0.3s;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            background: var(--dark-gold);
         }
         
         section {
             background: white;
-            margin: 60px 0;
-            padding: 80px 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--gold), var(--dark-blue));
+            margin: 40px 0;
+            padding: 60px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .section-title {
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--dark-blue);
             margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--gold);
         }
         
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
         }
         
         .products-grid {
@@ -240,14 +208,8 @@
         .product-card {
             background: #f8f9fa;
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 10px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
         .product-icon {
@@ -265,12 +227,6 @@
         .advantage {
             text-align: center;
             padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .advantage:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
         .advantage i {
@@ -288,19 +244,8 @@
         .contact-card {
             background: #f8f9fa;
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 10px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .contact-card h3 {
-            color: var(--dark-blue);
-            margin-bottom: 1rem;
         }
         
         .contact-links {
@@ -313,39 +258,29 @@
         .contact-links a {
             color: var(--gold);
             font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .contact-links a:hover {
-            color: #b8941f;
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         footer {
             background: var(--dark-blue);
             color: white;
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 60px;
+            padding: 2rem;
         }
         
+        /* Скрытие языков по умолчанию */
+        .lang-uk { display: block; }
+        .lang-en { display: none; }
+        
+        body:lang(en) .lang-uk { display: none; }
+        body:lang(en) .lang-en { display: block; }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
             .nav-links {
                 display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
             }
             
             .about-content {
@@ -354,102 +289,154 @@
         }
     </style>
 </head>
-<body>
+<body lang="uk">
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">GOLDEN OIL <span>TRADE</span></a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#about">О компании</a></li>
-                    <li><a href="#products">Продукция</a></li>
-                    <li><a href="#advantages">Преимущества</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                </ul>
-            </nav>
+            <div class="logo">GOLDEN OIL <span>TRADE</span></div>
+            <div class="nav-right">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#about" class="lang-uk">Про компанію</a><a href="#about" class="lang-en">About</a></li>
+                        <li><a href="#products" class="lang-uk">Продукція</a><a href="#products" class="lang-en">Products</a></li>
+                        <li><a href="#advantages" class="lang-uk">Переваги</a><a href="#advantages" class="lang-en">Advantages</a></li>
+                        <li><a href="#contacts" class="lang-uk">Контакти</a><a href="#contacts" class="lang-en">Contacts</a></li>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <button class="language-btn">
+                        <span class="lang-uk">UA</span>
+                        <span class="lang-en">EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown">
+                        <div class="language-option active" data-lang="uk">
+                            <span>🇺🇦 Українська</span>
+                        </div>
+                        <div class="language-option" data-lang="en">
+                            <span>🇺🇸 English</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>Экспорт премиального подсолнечного масла</h1>
-            <p>Более 10 лет качества и надежности на международном рынке</p>
-            <a href="#contacts" class="btn">Получить коммерческое предложение</a>
+            <h1 class="lang-uk">Експорт преміального соняшникового масла</h1>
+            <h1 class="lang-en">Export of Premium Sunflower Oil</h1>
+            
+            <p class="lang-uk">Понад 10 років якості та надійності на міжнародному ринку</p>
+            <p class="lang-en">Over 10 years of quality and reliability in the international market</p>
+            
+            <a href="#contacts" class="btn lang-uk">Отримати комерційну пропозицію</a>
+            <a href="#contacts" class="btn lang-en">Get Commercial Offer</a>
         </div>
     </section>
 
-    <section id="about" class="fade-in">
+    <section id="about">
         <div class="container">
-            <h2 class="section-title">О компании</h2>
+            <h2 class="section-title lang-uk">Про компанію</h2>
+            <h2 class="section-title lang-en">About Company</h2>
+            
             <div class="about-content">
                 <div>
-                    <p>Компания <strong>Golden Oil Trade LLC</strong> входит в группу компаний под общим названием "GOLDEN OIL TRADE". Наша компания более десяти лет занимается производством и продажей подсолнечного масла высшего качества.</p>
-                    <p>Наша продукция пользуется большим спросом по всему миру благодаря бескомпромиссному качеству и гибким условиям поставок.</p>
+                    <p class="lang-uk">Компанія <strong>Golden Oil Trade LLC</strong> входить до групи компаній під загальною назвою "GOLDEN OIL TRADE". Наша компанія понад десять років займається виробництвом та продажем соняшникового масла найвищої якості.</p>
+                    <p class="lang-en">Company <strong>Golden Oil Trade LLC</strong> is part of the group of companies under the general name "GOLDEN OIL TRADE". Our company has been engaged in the production and sale of highest quality sunflower oil for over ten years.</p>
+                    
+                    <p class="lang-uk">Наша продукція користується великим попитом по всьому світу завдяки безкомпромісній якості та гнучким умовам поставок.</p>
+                    <p class="lang-en">Our products are in great demand worldwide due to uncompromising quality and flexible delivery terms.</p>
                 </div>
                 <div>
-                    <p>Все продукты сертифицированы по международным требованиям и обладают всеми необходимыми сертификатами качества.</p>
-                    <p>Мы гарантируем оперативную обработку заявок и индивидуальный подход к каждому клиенту.</p>
+                    <p class="lang-uk">Всі продукти сертифіковані за міжнародними вимогами та мають всі необхідні сертифікати якості.</p>
+                    <p class="lang-en">All products are certified according to international requirements and have all necessary quality certificates.</p>
+                    
+                    <p class="lang-uk">Ми гарантуємо оперативну обробку заявок та індивідуальний підхід до кожного клієнта.</p>
+                    <p class="lang-en">We guarantee prompt processing of applications and individual approach to each client.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="products" class="fade-in">
+    <section id="products">
         <div class="container">
-            <h2 class="section-title">Наша продукция</h2>
+            <h2 class="section-title lang-uk">Наша продукція</h2>
+            <h2 class="section-title lang-en">Our Products</h2>
+            
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-icon">🌻</div>
-                    <h3>Масло сырое первого класса</h3>
-                    <p>Высококачественное нерафинированное масло холодного отжима</p>
+                    <h3 class="lang-uk">Масло сире першого класу</h3>
+                    <h3 class="lang-en">Raw First Class Oil</h3>
+                    <p class="lang-uk">Високоякісне нерафіноване масло холодного віджиму</p>
+                    <p class="lang-en">High-quality unrefined cold-pressed oil</p>
                 </div>
                 <div class="product-card">
                     <div class="product-icon">⚡</div>
-                    <h3>Масло рафинированное, дезодорированное, вымороженное</h3>
-                    <p>Марки "П". Идеально для жарки и пищевой промышленности</p>
+                    <h3 class="lang-uk">Масло рафіноване, дезодороване, виморожене</h3>
+                    <h3 class="lang-en">Refined, Deodorized, Winterized Oil</h3>
+                    <p class="lang-uk">Марки "П". Ідеально для смаження та харчової промисловості</p>
+                    <p class="lang-en">Grade "P". Perfect for frying and food industry</p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <h3>Фасовка:</h3>
-                <p>Наливом в контейнера с флекситанком, а также разлитое в емкости объемом 1, 5, 10, 20 литров</p>
+                <h3 class="lang-uk">Фасування:</h3>
+                <h3 class="lang-en">Packaging:</h3>
+                <p class="lang-uk">Навалом в контейнери з флексітанком, а також розлите в ємності об'ємом 1, 5, 10, 20 літрів</p>
+                <p class="lang-en">In bulk in flexitank containers, as well as bottled in containers of 1, 5, 10, 20 liters</p>
             </div>
         </div>
     </section>
 
-    <section id="advantages" class="fade-in">
+    <section id="advantages">
         <div class="container">
-            <h2 class="section-title">Наши преимущества</h2>
+            <h2 class="section-title lang-uk">Наші переваги</h2>
+            <h2 class="section-title lang-en">Our Advantages</h2>
+            
             <div class="advantages">
                 <div class="advantage">
                     <i class="fas fa-award"></i>
-                    <h3>10+ лет опыта</h3>
-                    <p>Более десяти лет успешной работы на международном рынке</p>
+                    <h3 class="lang-uk">10+ років досвіду</h3>
+                    <h3 class="lang-en">10+ Years Experience</h3>
+                    <p class="lang-uk">Понад десять років успішної роботи на міжнародному ринку</p>
+                    <p class="lang-en">Over ten years of successful work in the international market</p>
                 </div>
                 <div class="advantage">
                     <i class="fas fa-certificate"></i>
-                    <h3>Сертификаты качества</h3>
-                    <p>Вся продукция соответствует международным стандартам</p>
+                    <h3 class="lang-uk">Сертифікати якості</h3>
+                    <h3 class="lang-en">Quality Certificates</h3>
+                    <p class="lang-uk">Вся продукція відповідає міжнародним стандартам</p>
+                    <p class="lang-en">All products meet international standards</p>
                 </div>
                 <div class="advantage">
                     <i class="fas fa-shipping-fast"></i>
-                    <h3>Гибкая логистика</h3>
-                    <p>Работаем как на условиях самовывоза, так и с доставкой</p>
+                    <h3 class="lang-uk">Гнучка логістика</h3>
+                    <h3 class="lang-en">Flexible Logistics</h3>
+                    <p class="lang-uk">Працюємо як на умовах самовивозу, так і з доставкою</p>
+                    <p class="lang-en">We work both on self-pickup terms and with delivery</p>
                 </div>
                 <div class="advantage">
                     <i class="fas fa-clock"></i>
-                    <h3>Оперативность</h3>
-                    <p>Быстрый расчет стоимости товара и логистики</p>
+                    <h3 class="lang-uk">Оперативність</h3>
+                    <h3 class="lang-en">Efficiency</h3>
+                    <p class="lang-uk">Швидкий розрахунок вартості товару та логістики</p>
+                    <p class="lang-en">Quick calculation of product cost and logistics</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contacts" class="fade-in">
+    <section id="contacts">
         <div class="container">
-            <h2 class="section-title">Контакты</h2>
+            <h2 class="section-title lang-uk">Контакти</h2>
+            <h2 class="section-title lang-en">Contacts</h2>
+            
             <div class="contacts-grid">
                 <div class="contact-card">
-                    <h3>Николай</h3>
-                    <p>Менеджер по экспорту</p>
+                    <h3>Микола</h3>
+                    <h3>Mykola</h3>
+                    <p class="lang-uk">Менеджер з експорту</p>
+                    <p class="lang-en">Export Manager</p>
                     <p>+380951299585 (Viber)</p>
                     <p>+447851407365 (Telegram, WhatsApp)</p>
                     <p>golden.oil.7771@gmail.com</p>
@@ -461,7 +448,9 @@
                 </div>
                 <div class="contact-card">
                     <h3>Анжела</h3>
-                    <p>Менеджер по работе с клиентами</p>
+                    <h3>Anzhela</h3>
+                    <p class="lang-uk">Менеджер з роботи з клієнтами</p>
+                    <p class="lang-en">Customer Relationship Manager</p>
                     <p>+380671101368 (Viber, Telegram, WhatsApp)</p>
                     <p>golden.oil.1902@gmail.com</p>
                     <div class="contact-links">
@@ -472,31 +461,80 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <h3>Адрес предприятия:</h3>
-                <p>Болгария, Святой Влас, комплекс Marina View Fort Beach, блок A-1, этаж 4, кв. 22</p>
+                <h3 class="lang-uk">Адреса підприємства:</h3>
+                <h3 class="lang-en">Company Address:</h3>
+                <p>Болгарія, Святий Влас, комплекс Marina View Fort Beach, блок A-1, поверх 4, кв. 22</p>
+                <p>Bulgaria, Sveti Vlas, complex Marina View Fort Beach, block A-1, floor 4, apt. 22</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Golden Oil Trade LLC. Все права защищены.</p>
+            <p class="lang-uk">&copy; 2024 Golden Oil Trade LLC. Всі права захищені.</p>
+            <p class="lang-en">&copy; 2024 Golden Oil Trade LLC. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Анимация появления при скролле
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Переключение языков
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.language-option');
+            const langBtn = document.querySelector('.language-btn');
+            const dropdown = document.querySelector('.language-dropdown');
+            
+            // Обработчик клика по кнопке языка
+            langBtn.addEventListener('click', function() {
+                dropdown.classList.toggle('show');
+            });
+            
+            // Обработчик выбора языка
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedLang = this.getAttribute('data-lang');
+                    
+                    // Обновляем активный язык
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Меняем язык страницы
+                    document.body.setAttribute('lang', selectedLang);
+                    
+                    // Обновляем текст на кнопке
+                    const btnText = langBtn.querySelector('span');
+                    if (selectedLang === 'uk') {
+                        langBtn.innerHTML = 'UA <i class="fas fa-chevron-down"></i>';
+                    } else {
+                        langBtn.innerHTML = 'EN <i class="fas fa-chevron-down"></i>';
+                    }
+                    
+                    // Закрываем dropdown
+                    dropdown.classList.remove('show');
+                    
+                    // Сохраняем выбор в localStorage
+                    localStorage.setItem('preferred-language', selectedLang);
+                });
+            });
+            
+            // Закрытие dropdown при клике вне его
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.language-switcher')) {
+                    dropdown.classList.remove('show');
                 }
             });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(el => observer.observe(el));
+            
+            // Восстановление выбранного языка при загрузке
+            const savedLang = localStorage.getItem('preferred-language');
+            if (savedLang) {
+                document.body.setAttribute('lang', savedLang);
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === savedLang) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
 
         // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -506,18 +544,6 @@
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // Эффект при скролле для хедера
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.15)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.1)';
-            }
         });
     </script>
 </body>
