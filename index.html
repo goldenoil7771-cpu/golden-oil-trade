@@ -74,6 +74,21 @@
             font-weight: 600;
             color: var(--gold);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Стилизованный логотип вместо иконки */
+        .logo-icon {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold), #b8941f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
         }
         
         .logo span {
@@ -322,10 +337,20 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
-        .product-icon {
-            font-size: 3rem;
+        /* Стилизованный логотип вместо иконки продукта */
+        .product-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--gold);
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .product-logo span {
+            color: var(--dark-blue);
         }
         
         .advantages {
@@ -345,10 +370,20 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
-        .advantage i {
-            font-size: 2.5rem;
+        /* Логотип вместо иконки преимущества */
+        .advantage-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
             color: var(--gold);
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+        }
+        
+        .advantage-logo span {
+            color: var(--dark-blue);
         }
         
         .contacts-grid {
@@ -444,13 +479,24 @@
             .nav-right {
                 gap: 1rem;
             }
+            
+            .product-logo {
+                font-size: 2rem;
+            }
+            
+            .advantage-logo {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body lang="uk">
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">GOLDEN OIL <span>TRADE</span></a>
+            <a href="#" class="logo">
+                <span class="logo-icon">GOLDEN OIL</span>
+                <span>TRADE</span>
+            </a>
             <div class="nav-right">
                 <nav>
                     <ul class="nav-links">
@@ -536,7 +582,7 @@
             
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-icon">🌻</div>
+                    <div class="product-logo">GOLDEN<span>OIL</span></div>
                     <h3 class="lang-uk">Масло сире першого класу</h3>
                     <h3 class="lang-ru">Масло сырое первого класса</h3>
                     <h3 class="lang-en">Raw First Class Oil</h3>
@@ -545,7 +591,7 @@
                     <p class="lang-en">High-quality unrefined cold-pressed oil</p>
                 </div>
                 <div class="product-card">
-                    <div class="product-icon">⚡</div>
+                    <div class="product-logo">GOLDEN<span>OIL</span></div>
                     <h3 class="lang-uk">Масло рафіноване, дезодороване, виморожене</h3>
                     <h3 class="lang-ru">Масло рафинированное, дезодорированное, вымороженное</h3>
                     <h3 class="lang-en">Refined, Deodorized, Winterized Oil</h3>
@@ -573,7 +619,7 @@
             
             <div class="advantages">
                 <div class="advantage">
-                    <i class="fas fa-award"></i>
+                    <div class="advantage-logo">GO<span>Т</span></div>
                     <h3 class="lang-uk">10+ років досвіду</h3>
                     <h3 class="lang-ru">10+ лет опыта</h3>
                     <h3 class="lang-en">10+ Years Experience</h3>
@@ -582,7 +628,7 @@
                     <p class="lang-en">Over ten years of successful work in the international market</p>
                 </div>
                 <div class="advantage">
-                    <i class="fas fa-certificate"></i>
+                    <div class="advantage-logo">GO<span>Т</span></div>
                     <h3 class="lang-uk">Сертифікати якості</h3>
                     <h3 class="lang-ru">Сертификаты качества</h3>
                     <h3 class="lang-en">Quality Certificates</h3>
@@ -591,7 +637,7 @@
                     <p class="lang-en">All products meet international standards</p>
                 </div>
                 <div class="advantage">
-                    <i class="fas fa-shipping-fast"></i>
+                    <div class="advantage-logo">GO<span>Т</span></div>
                     <h3 class="lang-uk">Гнучка логістика</h3>
                     <h3 class="lang-ru">Гибкая логистика</h3>
                     <h3 class="lang-en">Flexible Logistics</h3>
@@ -600,7 +646,7 @@
                     <p class="lang-en">We work both on self-pickup terms and with delivery</p>
                 </div>
                 <div class="advantage">
-                    <i class="fas fa-clock"></i>
+                    <div class="advantage-logo">GO<span>Т</span></div>
                     <h3 class="lang-uk">Оперативність</h3>
                     <h3 class="lang-ru">Оперативность</h3>
                     <h3 class="lang-en">Efficiency</h3>
